@@ -1,0 +1,18 @@
+{
+  "name": "kjenney/php-webminer",
+  "description": "A php client that uses WebDriver and ",
+  "keywords": ["webdriver", "selenium", "php", "kjenney"],
+  "homepage": "https://github.com/kjenney/php-webminer",
+  "type": "library",
+  "license": "Apache-2.0",
+  "support": {
+    "issues": "https://github.com/kjenney/php-webminer/issues",
+    "source": "https://github.com/kjenney/php-webminder"
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "querypath/QueryPath": "dev-master",
+    "facebook/php-webdriver": "dev-master"
+  }
+}
+

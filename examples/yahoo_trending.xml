@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<pullcase>
+<description>Yahoo Trending</description>
+<site>http://www.yahoo.com</site>
+<configuration>
+	<timeout>5000</timeout>
+</configuration>
+<steps>
+<step>
+<command>type</command>
+<parameter>.input-query</parameter>
+</step>
+<step>
+<command>click</command>
+<parameter>.searchsubmit</parameter>
+</step>
+</steps>
+<root>results</root>
+<element_head>result</element_head>
+<elements>
+<element>
+<input>.Sr > .compTitle > .title > a</input>
+<output>title</output>
+</element>
+<element>
+<input>.Sr > .compText > p</input>
+<output>description</output>
+</element>
+</elements>
+</pullcase>
