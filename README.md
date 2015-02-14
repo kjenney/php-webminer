@@ -8,6 +8,8 @@ This project aims to create a standard way of extracting data from a web page us
 ### Input XML
 The input XML defines all of the aspects of the web site and the data you wish to extract. Samples are included in the /examples folder.
 
+### Output XML
+The definitions in the Input XML define how the output XML will be formatted (element names).
 
 ##  GETTING THE CODE
 
@@ -40,8 +42,3 @@ Install the library.
 *   Download and run that file, replacing # with the current server version.
 
         java -jar selenium-server-standalone-#.jar
-
-*   Then when you create a session, be sure to pass the url to where your server is running.
-
-        // This would be the url of the host running the server-standalone.jar
-        $host = 'http://localhost:4444/wd/hub'; // this is the default
