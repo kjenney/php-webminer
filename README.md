@@ -39,6 +39,7 @@ The definitions in the Input XML define how the output XML will be formatted (el
 
 ### Packagist
 Add the dependency. https://packagist.org/packages/kjenney/php-webminer
+    
     {
       "require": {
         "kjenney/php-webminer": "dev-master"
