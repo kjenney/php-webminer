@@ -66,3 +66,6 @@ Install PHP5-Tidy
 *   Download and run that file, replacing # with the current server version.
 
         java -jar selenium-server-standalone-#.jar
+
+##  Support
+*   Wiki - https://github.com/kjenney/php-webminer/wiki
