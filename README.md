@@ -32,14 +32,13 @@ Samples are inclusded in the /examples folder.
 The definitions in the Input XML define how the output XML will be formatted (element names).
 
 
-##  GETTING THE CODE
+##  INSTALLING
 
 ### Github
     git clone git@github.com:kjenney/php-webminer.git
 
 ### Packagist
 Add the dependency. https://packagist.org/packages/kjenney/php-webminer
-
     {
       "require": {
         "kjenney/php-webminer": "dev-master"
@@ -54,7 +53,10 @@ Install the library.
 
     php composer.phar install
         
-   
+Install PHP5-Tidy
+
+    apt-get install php5-tidy
+ 
 
 ##  GETTING STARTED
 
