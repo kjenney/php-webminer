@@ -17,8 +17,8 @@ Base XML must be in the following format:
 
 **Actions**
 
-Click
-Type
+1. Click
+2. Type
 
 **Elements**
 
