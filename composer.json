@@ -14,8 +14,10 @@
     "querypath/querypath": "3.0.3",
     "facebook/webdriver": "0.5.1"
   },
-  "autoload": {
-        "psr-0": { "Application": "lib/" }
-  }
+ "autoload": {
+        "files": [
+             "miner.php"
+        ]
+    }
 }
 
