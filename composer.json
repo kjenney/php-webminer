@@ -11,7 +11,7 @@
   },
   "require": {
     "php": ">=5.4.0",
-    "querypath/querypath": ">=3.0.3",
+    "querypath/querypath": "dev-master",
     "facebook/webdriver": "dev-master"
   }
 }
