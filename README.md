@@ -10,9 +10,8 @@ The input XML defines all of the aspects of the web site and the data you wish t
 
 Base XML must be in the following format:
 
-1. Root element must be named "pullcase"
-2. Child elemnet "site" must be defined
-3. Child element "steps" are recommended as they drive actions 
+1. Child elemnet "site" must be defined
+2. Child element "steps" are recommended as they drive actions 
 
 
 **Actions**
