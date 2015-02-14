@@ -55,7 +55,6 @@ class Miner {
 
 	public function __destruct() {
        		$this->driver->quit();
-       		//echo "this";
    	}
 	
 	/**

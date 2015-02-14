@@ -8,4 +8,4 @@ $port = '4444';   // This is the default port
 
 $mine = new Miner($port,$xml,"test");
 
-echo $mine;   // Outputs XML of extracted data
+echo $mine->run();   // Outputs XML of extracted data
