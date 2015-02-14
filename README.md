@@ -10,30 +10,20 @@ The input XML defines all of the aspects of the web site and the data you wish t
 
 Base XML must be in the following format:
 
-<?xml version="1.0"?>
-
-<pullcase>
-
-<description>Description</description>
-
-`<site>http://www.website.com</site>`
-`<steps>
-<step>
-<command>click</command>
-<parameter>#clickme</parameter>
-</step>
-</steps>
-<root>results</root>
-<element_head>result</element_head>
-<elements>
-<element>
-<input>CSS > Selector</input>
-<output>title</output>
-</element>
-</elements>
-</pullcase>`
+1. Root element must be named "pullcase"
+2. Child elemnet "site" must be defined
+3. Child element "steps" are recommended as they drive actions 
 
 
+**Actions**
+
+Click
+Type
+
+**Elements**
+
+1. Input - CSS Selectors used by QueryPath to pull data from a web page
+2. Output - Element name of Output XML
 
 
 Samples are inclusded in the /examples folder.
