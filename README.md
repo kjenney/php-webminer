@@ -56,6 +56,7 @@ Install the library.
 Install PHP5-Tidy
 
     apt-get install php5-tidy
+    yum install php-tidy
  
 
 ##  GETTING STARTED
