@@ -11,8 +11,11 @@ The input XML defines all of the aspects of the web site and the data you wish t
 Base XML must be in the following format:
 
 <?xml version="1.0"?>
+
 <pullcase>
+
 <description>Description</description>
+
 `<site>http://www.website.com</site>`
 `<steps>
 <step>
