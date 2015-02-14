@@ -13,7 +13,7 @@
     "php": ">=5.4.0",
     "querypath/querypath": "3.0.3",
     "facebook/webdriver": "0.5.1"
-  }
+  },
   "autoload": {
     "classmap": ["lib/"]
   }
