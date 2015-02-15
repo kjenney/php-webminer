@@ -33,6 +33,8 @@ The definitions in the Input XML define how the output XML will be formatted (el
 
 ##  INSTALLING
 
+**__GET THE CODE__**
+
 ### Github
     git clone git@github.com:kjenney/php-webminer.git
 
@@ -44,7 +46,9 @@ Add the dependency. https://packagist.org/packages/kjenney/php-webminer
         "kjenney/php-webminer": "dev-master"
       }
     }
-    
+
+**__BUILD WITH DEPENDENCIES__**   
+
 Download the composer.phar
 
     curl -sS https://getcomposer.org/installer | php
