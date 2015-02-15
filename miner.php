@@ -13,11 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//require_once('php-webdriver/lib/__init__.php');
-//require_once('querypath/vendor/autoload.php');
-// requires php tidy - library can be installed via apt or rpm
-	
-
 /**
  * Selenium WebDriver API acccessed via PHP-WebDriver
  * Input is XML of steps to follow on site, Ouputs as XML
