@@ -14,10 +14,14 @@
     "querypath/querypath": "3.0.3",
     "facebook/webdriver": "0.5.1"
   },
- "autoload": {
+  "require-dev": {
+	"phpunit/phpunit": "3.7.*",
+	"phpdocumentor/phpdocumentor": "2.*"
+  },
+  "autoload": {
         "files": [
              "miner.php"
         ]
-    }
+  }
 }
 
