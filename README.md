@@ -78,4 +78,4 @@ Install PHP5-Tidy
 
 *   There's still a lot of work that needs to be done, but I welcome any help and/or suggestions.
 
-*   Feel free to create issues and/or recommend features.
+*   Feel free to create issues and recommend features.
