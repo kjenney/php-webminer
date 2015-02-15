@@ -3,12 +3,12 @@ php-webminer -- Extract data using Selenium, QueryPath and PHP
 
 ##  DESCRIPTION
 
-This project aims to create a standard way of extracting data from a web page using Selenium WebDriver (via php-webdriver), QueryPath, and an XML file which specifies which components to extract and how to output the results.
+This project aims to create a standard way of extracting data from a web page using Selenium WebDriver (via php-webdriver), QueryPath, and a configuration file (XML) which specifies which components to extract and how to output the results.
 
-### Input XML
-The input XML defines all of the aspects of the web site and the data you wish to extract. 
+### Configuration File
+The configuration file defines all of the aspects of the web site and the data you wish to extract. 
 
-Base XML must be in the following format:
+It is in XML and must be in the following format:
 
 1. Child elemnet "site" must be defined
 2. Child element "steps" are recommended as they drive actions 
@@ -27,8 +27,8 @@ Base XML must be in the following format:
 
 Samples are inclusded in the /examples folder.
 
-### Output XML
-The definitions in the Input XML define how the output XML will be formatted (element names).
+### Outputs XML
+The definitions in the configuration define how the output will be formatted (element names).
 
 
 ##  INSTALLING
@@ -73,3 +73,9 @@ Install PHP5-Tidy
 
 ##  Support
 *   Wiki - https://github.com/kjenney/php-webminer/wiki
+
+## Contributing
+
+*   There's still a lot of work that needs to be done, but I welcome any help and/or suggestions.
+
+*   Feel free to create issues and/or recommend features.
