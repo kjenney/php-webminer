@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "support": {
     "issues": "https://github.com/kjenney/php-webminer/issues",
-    "source": "https://github.com/kjenney/php-webminder"
+    "source": "https://github.com/kjenney/php-webminer"
   },
   "require": {
     "php": ">=5.4.0",
