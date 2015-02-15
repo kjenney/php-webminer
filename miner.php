@@ -187,11 +187,4 @@ class Miner {
 		return $this->driver->getPageSource();
 	}
 
-	/**
- 	* Get the value of $elements
- 	*/
-	function getElements($elements) {
-		var_dump($this->driver->findElements(WebDriverBy::id($elements)));
-	}
-
 }
