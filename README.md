@@ -47,7 +47,8 @@ Add the dependency. https://packagist.org/packages/kjenney/php-webminer
       }
     }
 
-**__BUILD WITH DEPENDENCIES__**    
+**__BUILD WITH DEPENDENCIES__**   
+
 Download the composer.phar
 
     curl -sS https://getcomposer.org/installer | php
