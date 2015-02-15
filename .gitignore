@@ -1,6 +1,9 @@
 composer.phar
 composer.lock
 vendor
+.settings
+.project
+.buildpath
 
 # generic files to ignore
 *.lock
