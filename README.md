@@ -3,7 +3,7 @@ php-webminer -- Extract data using Selenium, QueryPath and PHP
 
 ##  DESCRIPTION
 
-This project aims to create a standard way of extracting data from a web page using Selenium WebDriver, QueryPath, and an XML file which specifies which components to extract and how to output the results.
+This project aims to create a standard way of extracting data from a web page using Selenium WebDriver (via php-webdriver), QueryPath, and an XML file which specifies which components to extract and how to output the results.
 
 ### Input XML
 The input XML defines all of the aspects of the web site and the data you wish to extract. 
