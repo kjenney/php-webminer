@@ -20,7 +20,7 @@
   },
   "autoload": {
         "files": [
-             "miner.php"
+             "lib/include.php"
         ]
   }
 }

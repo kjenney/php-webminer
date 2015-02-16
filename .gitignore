@@ -4,6 +4,7 @@ vendor
 .settings
 .project
 .buildpath
+myconfigs
 
 # generic files to ignore
 *.lock
