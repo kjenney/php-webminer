@@ -98,9 +98,10 @@ class Database {
 	}
 
 	/**
-     * Set the container for the request
+     * Set the machine for the container
+     * Treat docker containers as machines
      */
-	public function setRequestContainer($request,$server,$container) {
+	public function setRequestMachine($request,$server,$container) {
 		DB::update('requests', array(
 			'docker_server' => $server,
 			'container' => $container
