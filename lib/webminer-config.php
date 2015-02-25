@@ -19,7 +19,7 @@
  * Ouputs as XML
  */
 class Config {
-	public $driver,$source, $site, $xml, $xmlobj, $xmlarray, $parameter;
+	use Configurator;
 	
 	public function __construct($port,$xml,$parameter) {
 		// Require parameter passed
