@@ -15,7 +15,8 @@
 
 /**
  * Selenium WebDriver API acccessed via PHP-WebDriver
- * Input is XML of steps to follow on site, Ouputs as XML
+ * Input is XML of steps to follow on site
+ * Ouputs as XML
  */
 class Miner {
 	public $driver,$source, $site, $xml, $xmlobj, $xmlarray, $parameter;
