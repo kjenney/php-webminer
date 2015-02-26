@@ -25,6 +25,7 @@ It is in XML and must be in the following format:
 2. Output - Element name of Output XML
 
 **Database**
+
 If <database> elements are defind the XML will be imported into the database->table per the specifications in the Configuration File
 
 Samples are inclusded in the /examples folder.
