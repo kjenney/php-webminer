@@ -33,10 +33,9 @@ class Database {
      */
 	public function getConfig() {
 		$config = $this->getXML();
-		$this->process_time = $config['process']['time'];
 		$this->db_user = $config['database']['user'];
 		$this->db_passwd = $config['database']['password'];
-		$this->db_db = $config['database']['database'];
+		$this->db_db = $config['database']['host'];
 		DB::$dbName = $this->db_db;
 		DB::$password = $this->db_passwd;
 		DB::$user = $this->db_user;
