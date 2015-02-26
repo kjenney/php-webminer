@@ -3,9 +3,10 @@
 
 require_once('vendor/autoload.php');
 
-$xml = file_get_contents('examples/yahoo_trending.xml');
+$config = new Config();
+$config->setXML("examples/yahoo_trending.xml");
 $port = '4444';   // This is the default port
 
-$mine = new Miner($port,$xml,"test");
+$mine = new Miner($port,"test");
 
 echo $mine->run();   // Outputs XML of extracted data
