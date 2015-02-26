@@ -20,6 +20,8 @@
  * Class to manage database interactions and logging
  */
 class Database {
+	use Configurator;
+	
 	private $db_user, $db_passwd, $db_db, $process_time;
 	
 	function __construct() {
@@ -30,8 +32,7 @@ class Database {
      * Grab database values from config file
      */
 	public function getConfig() {
-		$mimi = new Mimi();
-		$config = $mimi->getConfig();
+		$config = $this->getXML();
 		$this->process_time = $config['process']['time'];
 		$this->db_user = $config['database']['user'];
 		$this->db_passwd = $config['database']['password'];
