@@ -5,6 +5,11 @@
 <configuration>
 	<timeout>5000</timeout>
 </configuration>
+<database>
+<host>localhost</host>		
+<user>sqluser</user>	
+<password>password</password>
+</database>
 <steps>
 <step>
 <command>type</command>
