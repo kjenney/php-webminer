@@ -22,7 +22,7 @@
 class Database {
 	use Configurator;
 	
-	private $db_user, $db_passwd, $db_db, $process_time;
+	private $db_user, $db_passwd, $db_host, $db_table;
 	
 	function __construct() {
 		$this->getConfig();
@@ -33,10 +33,11 @@ class Database {
      */
 	public function getConfig() {
 		$config = $this->getXML();
+		$this->db_host = $config['database']['host'];
 		$this->db_user = $config['database']['user'];
 		$this->db_passwd = $config['database']['password'];
-		$this->db_db = $config['database']['host'];
-		DB::$dbName = $this->db_db;
+		$this->db_table = $config['database']['table'];
+		DB::$dbName = $this->db_host;
 		DB::$password = $this->db_passwd;
 		DB::$user = $this->db_user;
 	}
