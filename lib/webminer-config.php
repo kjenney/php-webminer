@@ -17,64 +17,36 @@
  * Grab the XML Configuration
  * Used by the trait to make this accessible across classes
  */
-class Config
-{
-    /**
-     * Full XML configuration
-     *
-     * @var SimpleXMLElement
-     */
-    private static $xml;
+class Config {
+	
+    public static $xmlarray;
 
-    /**
-     * Parse XML configuration file into XML object (once)
-     */
-    public function __construct($filename)
-    {
-        if (!self::$xml) {
-            $xmlSource = file_get_contents($filename);
-            self::$xml = new SimpleXMLElement($xmlSource);
-        }
+    public function setXML($value) {
+		//$xmlobj = simplexml_load_file($value);
+		//self::$xmlarray = xmlobj2arr($xmlobj);
+		$Data = simplexml_load_file($value);
+		if (!isset($ret)) { $ret = array(); }
+		if (is_object($Data))
+			{ foreach (get_object_vars($Data) as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } self::$xmlarray = $ret; }
+		elseif (is_array($Data)) {
+			foreach ($Data as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } self::$xmlarray = $ret;
+		} else { 
+			self::$xmlarray = $Data; }
     }
-
-    /**
-     * Returns the first node matching the specified xpath
-     *
-     * @param $xpath
-     *
-     * @return SimpleXMLElement
-     */
-    public function getFirstByXpath($xpath)
-    {
-        // Return the first matching configuration
-        return self::$xml->xpath($xpath)[0];
+    
+    public function xmlobj2arr($Data) {
+    	if (!isset($ret)) { $ret = array(); }
+    	if (is_object($Data))
+    	{ foreach (get_object_vars($Data) as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret; }
+    	elseif (is_array($Data)) {
+    		foreach ($Data as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret;
+    	} else {
+    		return $Data; }
     }
 }
 
-trait Configurable
-{
-    /**
-     * Class configuration XML element
-     *
-     * @var SimpleXMLElement
-     */
-    public static $xml_file;
-    private $configuration;
-
-    /**
-     * Get the class configuration XML element
-     *
-     * @return SimpleXMLElement
-     */
-    function getConfiguration()
-    {
-        if (!$this->configuration) {
-            $tag = strtolower(get_class($this));
-            $xpath = '/config/' . $tag;
-
-            $this->configuration = (new Config($xml_file))->getFirstByXpath($xpath);
-        }
-
-        return $this->configuration;
-    }
+trait Configurator {
+	public function getXML() {
+		return Config::$xmlarray;
+	}
 }
