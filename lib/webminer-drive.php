@@ -19,27 +19,27 @@
  * Ouputs as XML
  */
 class Miner {
-	public $driver,$source, $site, $xml, $xmlobj, $xmlarray, $parameter;
+	use Configurator;
 	
-	public function __construct($port,$xml,$parameter) {
+	public $driver,$source, $site, $xmlarray, $parameter;
+	
+	public function __construct($port,$parameter) {
 		// Require parameter passed
 		if(strlen($parameter) > 0) {
 			$host = 'http://localhost:' . $port . '/wd/hub'; // this is the default
 			$capabilities = DesiredCapabilities::firefox();
 			$this->driver = RemoteWebDriver::create($host, $capabilities, 5000);
 		
-			// Parse the XML and pass a site parameter if found
-			$this->xml = $xml;
+			// Get the XML array from Configurator
+			$this->xmlarray = $this->getXML();
 			$this->parameter = $parameter;
-			$this->xmlobj = new SimpleXMLElement($xml);
-			$this->xmlarray = $this->xmlobj2arr($this->xmlobj);
 			$steps = $this->xmlarray['steps'];
 			foreach($steps as $step) {
 				if(in_array("url",$step)) { 
-					$uri = (string) $this->xmlobj->site;
+					$uri = $this->xmlarray['site'];
 					$this->site = $uri . $parameter;
 				} else {
-					$this->site = (string) $this->xmlobj->site;
+					$this->site = $this->xmlarray['site'];
 				}
 			}
 			//echo $this->site . "\n";
@@ -58,13 +58,12 @@ class Miner {
  	* Extract Data after steps
  	*/
 	function run() {
-		//$pullcase = new SimpleXMLElement($this->xml);
-		$pullcase = $this->xmlobj;
+		$pullcase = $this->xmlarray;
 		// Run thru steps that are in the XML if there are any
-		if(!empty($pullcase->steps)) {
-		foreach($pullcase->steps->step as $step) {
-			$command=(string)$step->command;
-			$parameter=(string)$step->parameter;			
+		if(!empty($pullcase['steps'])) {
+		foreach($pullcase['steps']['step'] as $step) {
+			$command=$step['command'];
+			$parameter=$step['parameter'];			
 			// Skip URL Typing as this has already been done
 			if($parameter!='url') {
 				if($command=='type')  { 
@@ -138,21 +137,6 @@ class Miner {
 		
 		
 		return $xml_output->asXML();
-	}
-
-	/**
- 	* Input Simple XML Object
- 	* Outputs array
- 	*/
-
-	function xmlobj2arr($Data) {
-		if (!isset($ret)) { $ret = array(); }
-		if (is_object($Data))
-			{ foreach (get_object_vars($Data) as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret; }
-		elseif (is_array($Data)) {
-			foreach ($Data as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret;
-		} else { 
-			return $Data; }
 	}
 	
 	function endsWith($haystack, $needle) {
