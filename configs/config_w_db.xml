@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<configuration>
+<timeout>5000</timeout>
+<database>
+<host>localhost</host>		
+<user>sqluser</user>	
+<password>password</password>
+</database>
+</configuration>
