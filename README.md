@@ -6,7 +6,14 @@ php-webminer -- Extract data using Selenium, QueryPath and PHP
 The goal of this project is to create an extensible system for extracting data from web pages. Currently it is using Selenium WebDriver (via php-webdriver), QueryPath, and a configuration file which specifies which components to extract and how to output the results.
 
 ### Configuration File
-The configuration file defines all of the aspects of the web site and the data you wish to extract. 
+The configuration file - config.xml -  defines system-wide settings, i.e. database, infrastructure. Ultimately this will allow users to maintain different environments from single server to enterprise/scalable systems. 
+
+**Database**
+
+Currently a single MySQL database is accepted. If <database> elements are defind the XML will be imported into the database->table per the specifications in the Configuration File
+
+### Job File
+The "job" configuration file defines all of the aspects of the web site and the data you wish to extract. 
 
 It is in XML and must be in the following format:
 
@@ -24,9 +31,6 @@ It is in XML and must be in the following format:
 1. Input - CSS Selectors used by QueryPath to pull data from a web page
 2. Output - Element name of Output XML
 
-**Database**
-
-If <database> elements are defind the XML will be imported into the database->table per the specifications in the Configuration File
 
 Samples are inclusded in the /examples folder.
 
@@ -68,7 +72,7 @@ Install PHP5-Tidy
 
 ##  GETTING STARTED
 
-*   All you need as the server for this client is the selenium-server-standalone-#.jar file provided here: http://selenium-release.storage.googleapis.com/index.html
+*   All you need as the server for this client is the selenium-server-standalone-#.jar file provided here: http://www.seleniumhq.org/download/
 
 *   Download and run that file, replacing # with the current server version.
 
