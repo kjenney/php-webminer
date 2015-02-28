@@ -6,7 +6,7 @@ php-webminer -- Extract data using Selenium, QueryPath and PHP
 The goal of this project is to create an extensible system for extracting data from web pages. Currently it is using Selenium WebDriver (via php-webdriver), QueryPath, and a configuration file which specifies which components to extract and how to output the results.
 
 ### Configuration File
-The configuration file - config.xml -  defines system-wide settings, i.e. database, infrastructure. Ultimately this will allow users to maintain different environments from single server to enterprise/scalable systems. 
+The optional configuration file - config.xml -  defines system-wide settings, i.e. database, infrastructure. Ultimately this will allow users to maintain different environments from single server to enterprise/scalable systems. IF config.xml is not included the default behavior is to output XML to stdout.
 
 **Database**
 
