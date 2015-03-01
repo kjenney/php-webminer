@@ -64,10 +64,12 @@ Install the library.
 
     php composer.phar install
         
-Install PHP5-Tidy
+Install PHP5 Extensions
 
     apt-get install php5-tidy
     yum install php-tidy
+    
+    apt-get install php5-mysqlnd
  
 
 ##  GETTING STARTED
