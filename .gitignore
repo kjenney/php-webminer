@@ -6,6 +6,7 @@ vendor
 .buildpath
 myconfigs
 config.xml
+test.php
 
 # generic files to ignore
 *.lock

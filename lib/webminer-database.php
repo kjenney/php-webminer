@@ -15,6 +15,7 @@
 
 // Meekrodb
 //require_once 'meekrodb/db.class.php';
+//dependency handled by Composer
 
 /**
  * Class to manage database interactions and logging
@@ -26,6 +27,7 @@ class Database {
 	
 	function __construct() {
 		$this->getConfig();
+		DB::query("SELECT * FROM %s", $this->db_table)
 	}
 	
 	/**
