@@ -19,34 +19,26 @@
  */
 class Config {
 	
-    public static $xmlarray;
+    public static $configarray;
 
-    public function setXML($value) {
-		//$xmlobj = simplexml_load_file($value);
-		//self::$xmlarray = xmlobj2arr($xmlobj);
-		$Data = simplexml_load_file($value);
-		if (!isset($ret)) { $ret = array(); }
-		if (is_object($Data))
-			{ foreach (get_object_vars($Data) as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } self::$xmlarray = $ret; }
-		elseif (is_array($Data)) {
-			foreach ($Data as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } self::$xmlarray = $ret;
-		} else { 
-			self::$xmlarray = $Data; }
-    }
-    
-    public function xmlobj2arr($Data) {
-    	if (!isset($ret)) { $ret = array(); }
-    	if (is_object($Data))
-    	{ foreach (get_object_vars($Data) as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret; }
-    	elseif (is_array($Data)) {
-    		foreach ($Data as $key => $val) { $ret[$key] = $this->xmlobj2arr($val); } return $ret;
-    	} else {
-    		return $Data; }
-    }
+    /**
+     * Parse the Configuration XML for the job being run
+     * Database and infrastructure settings here
+     * as well as individual website settings
+     */
+    function setConfig($value) {
+		$xml = simplexml_load_file($value);
+		$json = json_encode($xml);
+		self::$configarray = json_decode($json,TRUE);
+    }    
+      
+    public function getConfig() {
+		return self::$configarray;
+	}
 }
 
 trait Configurator {
-	public function getXML() {
-		return Config::$xmlarray;
+	public function getConfig() {
+		return Config::$configarray;
 	}
 }
