@@ -2,29 +2,31 @@
 <pullcase>
 <description>Yahoo Trending</description>
 <site>http://www.yahoo.com</site>
-<configuration>
-	<timeout>5000</timeout>
-</configuration>
+<firefoxprofile>
+	<preferences>browser.download.manager.showWhenStarting</preferences>
+	<values>false</values>
+</firefoxprofile>
 <steps>
-<step>
+<step1>
 <command>type</command>
 <parameter>.input-query</parameter>
-</step>
-<step>
+<value>test</value>
+</step1>
+<step2>
 <command>click</command>
 <parameter>.searchsubmit</parameter>
-</step>
+</step2>
 </steps>
 <root>results</root>
 <element_head>result</element_head>
 <elements>
-<element>
+<element1>
 <input>.Sr > .compTitle > .title > a</input>
 <output>title</output>
-</element>
-<element>
+</element1>
+<element2>
 <input>.Sr > .compText > p</input>
 <output>description</output>
-</element>
+</element2>
 </elements>
 </pullcase>
