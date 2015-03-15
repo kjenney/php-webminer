@@ -5,26 +5,23 @@ php-webminer -- Extract data using Selenium, QueryPath and PHP
 
 The goal of this project is to create an extensible system for extracting data from web pages. Currently it is using Selenium WebDriver (via php-webdriver), QueryPath, and a configuration file which specifies which components to extract and how to output the results.
 
-### Configuration File
-The optional configuration file - config.xml -  defines system-wide settings, i.e. database, infrastructure. Ultimately this will allow users to maintain different environments from single server to enterprise/scalable systems. IF config.xml is not included the default behavior is to output XML to stdout.
+### Job File
+The "job" configuration file defines all of the aspects of the system (database, infrastructure) and the web site and the data you wish to extract. 
+
+It is in XML and has the following options:
+
+1. Child element "site" must be defined
+2. Child element "steps" are recommended as they drive actions 
 
 **Database**
 
 Currently a single MySQL database is accepted. If <database> elements are defind the XML will be imported into the database->table per the specifications in the Configuration File
 
-### Job File
-The "job" configuration file defines all of the aspects of the web site and the data you wish to extract. 
-
-It is in XML and must be in the following format:
-
-1. Child elemnet "site" must be defined
-2. Child element "steps" are recommended as they drive actions 
-
-
 **Actions**
 
 1. Click
 2. Type
+3. Captcha
 
 **Elements**
 
@@ -32,7 +29,7 @@ It is in XML and must be in the following format:
 2. Output - Element name of Output XML
 
 
-Samples are inclusded in the /examples folder.
+Samples are included in the /examples folder.
 
 ### Outputs XML
 The definitions in the configuration define how the output will be formatted (element names).
@@ -70,6 +67,10 @@ Install PHP5 Extensions
     yum install php-tidy
     
     apt-get install php5-mysqlnd
+ 
+Install Tesseract (optional)
+
+    apt-get install tesseract-ocr
  
 
 ##  GETTING STARTED
