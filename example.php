@@ -4,9 +4,9 @@
 require_once('vendor/autoload.php');
 
 $config = new Config();
-$config->setJobXML("jobs/yahoo_trending.xml");
+$config->setConfig("jobs/yahoo_trending.xml");
 $port = '4444';   // This is the default port
 
-$mine = new Miner($port,"test");
+$mine = new Miner();
 
 echo $mine->run();   // Outputs XML of extracted data
