@@ -13,9 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Meekrodb
-//require_once 'meekrodb/db.class.php';
-//dependency handled by Composer
 
 /**
  * Class to manage database interactions and logging
@@ -23,23 +20,24 @@
 class Database {
 	use Configurator;
 	
-	private $db_user, $db_passwd, $db_host, $db_table;
+	private $db_user, $db_passwd, $db_host, $db_table, $mysqli, $config;
 	
 	function __construct() {
-		$this->getConfig();
-		DB::query("SELECT * FROM %s", $this->db_table)
+		$this->getDBConfig();
 	}
 	
 	/**
      * Grab database values from config file
      */
-	public function getConfig() {
-		$config = $this->getXML();
-		$this->db_host = $config['database']['host'];
-		$this->db_user = $config['database']['user'];
-		$this->db_passwd = $config['database']['password'];
-		$this->db_table = $config['database']['table'];
-		DB::$dbName = $this->db_host;
+	public function getDBConfig() {
+		$this->config = $this->getConfig();
+		$this->db_host = $this->config['database']['host'];
+		$this->db_user = $this->config['database']['user'];
+		$this->db_passwd = $this->config['database']['password'];
+		$this->db_name = $this->config['database']['dbname'];
+		$this->db_table = $this->config['database']['table'];
+		DB::$host = $this->db_host;
+		DB::$dbName = $this->db_name;
 		DB::$password = $this->db_passwd;
 		DB::$user = $this->db_user;
 	}
@@ -51,7 +49,35 @@ class Database {
 		echo "installing";
 	}
 	
+	/**
+     * Insert Row
+     * @array
+     */
+	public function insertRow($field_name,$value) {
+		DB::insert($this->db_table, array(
+			$field_name => $value
+		));
+		DB::insert($this->db_table, "Artist=%s", $artist);
+	}	
 
+	/**
+	 * Import XML from job
+	 */
+	public function importXML($xml) {
+		echo "Importing into database.\n";
+		$xml = simplexml_load_string($xml);
+		var_dump($xml);
+		$json = json_encode($xml);
+		$array = json_decode($json,TRUE);
+		
+		$rows = array();
+		foreach($array as $import) {
+			$rows[] = $import;
+		}
+
+		DB::insert($this->db_table, $rows);	
+	}	
+	
 	/**
      * List entries
      */
