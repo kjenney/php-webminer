@@ -30,6 +30,12 @@ class Miner {
 		// Get the configuration from Configurator
 		$this->configarray = $this->getConfig();
 		$this->steps = isset($this->configarray['steps']) ? $this->configarray['steps'] : null;
+		
+		// Require steps now - everything will be performed thru steps
+		if($this->steps==NULL) {
+			return "Nothing to do. Check your configuration. Steps are required.";
+		}	
+		
 		$this->elements = isset($this->configarray['elements']) ? $this->configarray['elements'] : null;
 		if(isset($this->configarray['site'])) {
 			$this->site = $this->configarray['site'];
@@ -111,40 +117,32 @@ class Miner {
 	
 	/**
  	* Processes Config
- 	* Run thru steps if any
- 	* Extract Data after steps if expected
+ 	* Run thru steps
  	*/
 	function run() {
 		$pullcase = $this->configarray;
-		// Run thru steps that are in the XML if there are any, if not continue
-		if($this->steps) {
-			$steps = $pullcase['steps'];
-			foreach($steps as $step) {
-				$command=$step['command'];
-				$parameter=$step['parameter'];
-				$value = isset($step['value']) ? $step['value'] : null;
-				$this->runCommands($command,$parameter,$value);	
-			}
-		} else {
-			echo "No steps to follow. Continuing..\n";
+		$steps = $pullcase['steps'];
+		foreach($steps as $step) {
+			$command=$step['command'];
+			$parameter = isset($step['parameter']) ? $step['parameter'] : null;
+			$value = isset($step['value']) ? $step['value'] : null;
+			$this->logverbose("Running " . $command,$parameter . "\n" . $value);
+			$this->runCommand($command,$parameter,$value);
 		}
-		// If output is expected according to config XML
-		if(isset($pullcase['root'])) {
-			// Extract data according to the XML
-			// Save the elements as an array to pass to outXML
-			$html = $this->getSource();
-			$xmlout = $this->outputXML($html);
-			// Check for database tags for import
-			if(array_key_exists("database",$pullcase)) {
+	}
+	
+	/**
+ 	* Export to DB
+ 	* Imports XML to a database table per configuration file
+ 	*/	
+	function exporttoDB($xml) {
+		if(array_key_exists("database",$this->configarray)) {
 				$db = new Database();
 				$db->importXML($xmlout);
 			} else{
-				return $xmlout;
-			}
-		} else {
-			return "No elements expected for output. Finished\n";
+				return "No database configuration given. Check config XML.";
 		}
-	}
+	}	
 	
 	/**
  	* Outputs structured XML from $html input
@@ -152,12 +150,13 @@ class Miner {
  	* Uses QueryPath to get DOM elements
  	* Uses SimpleXML to output to XML
  	*/
-	function outputXML($html) {
+	function outputXML() {
+		$html = $this->getSource();
 		$tidy = tidy_parse_string($html)->html()->value;
 		$searchqp = htmlqp($tidy,'body');
 
 		// Set XML based on elements in config XML
-		$root = $this->configarray['root'];
+		$root = "root";
 		$element_head = $this->configarray['element_head'];
 		$xml_output = new SimpleXMLElement("<?xml version=\"1.0\"?><" . $root . "></" . $root . ">");
 		
@@ -200,19 +199,20 @@ class Miner {
 			}
 		}
 		
-		
-		return $xml_output->asXML();
+		var_dump($xml_output->asXML());
+		//$xml_output->asXML();
 	}
 	
-	function runCommands($command,$parameter,$value="") {
-		// Skip URL Typing as this has already been done
-		if($parameter!='url') {
-			if($command=='type'||$command=='captcha'||$command=='getAllImgScrape'||$command=='getAllImgSave')  { 
-				$this->$command($parameter,$value); 
-			} else {
-				$this->$command($parameter);
-			}
-		}
+	/**
+ 	* Run command specified by config
+ 	*/	
+	function runCommand($command,$parameter=NULL,$value=NULL) {
+		if($value==NULL) {
+			if($parameter==NULL) {
+				// Return XML
+				return $this->$command();
+			} else { $this->$command($parameter); }
+		} else { $this->$command($parameter,$value); }
 	}
 	
 	function endsWith($haystack, $needle) {
@@ -240,6 +240,7 @@ class Miner {
 	function get($url) {
 		$this->driver->get($url);
 	}
+	
 	/**
  	* Type some $text into a $field passed by $array
  	*/	
@@ -279,7 +280,7 @@ class Miner {
 	/**
  	* Get Captcha Value and input in box
  	*/
-	function captcha($imglocation,$type) {
+	function captcha($imglocation,$typeinbox) {
 		$html = $this->getSource();
 		$tidy = tidy_parse_string($html)->html()->value;
 		$searchqp = htmlqp($tidy,'body');
@@ -288,7 +289,7 @@ class Miner {
 		file_put_contents($saveimg, file_get_contents($captchaurl));
 		$tesseract = new TesseractOCR($saveimg);
 		$crackedvalue = $tesseract->recognize();
-		$this->driver->findElement(WebDriverBy::CssSelector($type))->sendKeys($crackedvalue);
+		$this->driver->findElement(WebDriverBy::CssSelector($typeinbox))->sendKeys($crackedvalue);
 	}	
 	
 	/**
