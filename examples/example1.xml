@@ -23,10 +23,12 @@
 <element1>
 <input>.Sr > .compTitle > .title > a</input>
 <output>title</output>
+<type>text</type>
 </element1>
 <element2>
 <input>.Sr > .compText > p</input>
 <output>description</output>
+<type>text</type>
 </element2>
 </elements>
 </pullcase>
