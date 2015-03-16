@@ -5,8 +5,7 @@ require_once('../vendor/autoload.php');
 
 $config = new Config();
 $config->setConfig("example1.xml");
-$port = '4444';   // This is the default port
 
-$mine = new Miner("true");
+$mine = new Miner("true");	// True for verbose logging to log.log
 
-echo $mine->run();   // Outputs XML of extracted data
+echo $mine->run();
