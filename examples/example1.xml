@@ -16,8 +16,10 @@
 <command>click</command>
 <parameter>.searchsubmit</parameter>
 </step2>
+<step3>
+<command>outputXML</command>
+</step3>
 </steps>
-<root>results</root>
 <element_head>result</element_head>
 <elements>
 <element1>
