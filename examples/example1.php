@@ -7,6 +7,6 @@ $config = new Config();
 $config->setConfig("example1.xml");
 $port = '4444';   // This is the default port
 
-$mine = new Miner();
+$mine = new Miner("true");
 
 echo $mine->run();   // Outputs XML of extracted data
