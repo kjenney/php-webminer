@@ -27,9 +27,19 @@ class Config {
      * as well as individual website settings
      */
     function setConfig($value) {
+		//try {
+		//	$xml = simplexml_load_file($value);
+		//} catch (Exception $e) {
+		//	die("Error loading file. Check config.\n");
+		//}
+		libxml_use_internal_errors(true);
 		$xml = simplexml_load_file($value);
-		$json = json_encode($xml);
-		self::$configarray = json_decode($json,TRUE);
+		if($xml === false) {
+			echo "Failed loading XML\n";
+		} else {
+			$json = json_encode($xml);
+			self::$configarray = json_decode($json,TRUE);
+		}
     }    
       
     public function getConfig() {
