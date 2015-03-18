@@ -17,18 +17,18 @@
 <parameter>.searchsubmit</parameter>
 </step2>
 <step3>
-<command>outputXML</command>
+<command>outputDependentXML</command>
 </step3>
 </steps>
-<element_head>result</element_head>
+<element_head>.Sr</element_head>
 <elements>
 <element1>
-<input>.Sr > .compTitle > .title > a</input>
+<input>.compTitle > .title > a</input>
 <output>title</output>
 <type>text</type>
 </element1>
 <element2>
-<input>.Sr > .compText > p</input>
+<input>.compText > p</input>
 <output>description</output>
 <type>text</type>
 </element2>
