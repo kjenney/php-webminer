@@ -7,6 +7,7 @@ vendor
 myconfigs
 config.xml
 test.php
+examples/log.log  #Verbose log
 
 # generic files to ignore
 *.lock
